@@ -28,10 +28,12 @@
     "@angular/router": "~9.0.0",
     "express": "^4.17.1",
     "path": "^0.12.7",
+    "recordrtc": "^5.5.9",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "~3.7.5",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "moment": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.1",
