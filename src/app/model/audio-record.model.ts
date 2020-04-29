@@ -1,4 +1,4 @@
 export class AudioRecord {
-    blob: Blob;
+    audio: Blob;
     title: string;
 }

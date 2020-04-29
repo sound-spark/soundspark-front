@@ -1,12 +1,18 @@
 <div>
-    <button class="start-button" *ngIf="!isRecording && !blobUrl" (click)="startRecording()">Start Recording</button>
-    <button class="stop-button" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">Stop Recording</button>
-    <button class="cancel-button" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">Clear Recording</button>
-    <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} / 15</div>
-    <div *ngIf="!isRecording && blobUrl">
+    <button class="start-button" *ngIf="!isRecording && !audioURL" (click)="startRecording()">Start Recording</button>
+    <button class="stop-button" *ngIf="isRecording && !audioURL" (click)="stopRecording()">Stop Recording</button>
+    <button class="cancel-button" *ngIf="!isRecording && audioURL" (click)="clearRecordedData()">Clear Recording</button>
+    <div *ngIf="isRecording && !audioURL"> {{recordedTime}} / 15</div>
+    <div *ngIf="!isRecording && audioURL">
         <audio controls>
-            <source [src]="blobUrl" type="audio/wav">
+            <source [src]="sanitizedAudioURL" type="audio/wav">
         </audio>
 
+    </div>
+    <div *ngIf="statusMessage">
+        <p>{{statusMessage}}</p>
+    </div>
+    <div *ngIf="transcription">
+        <h3>{{transcription.transcription}}</h3>
     </div>
 </div>

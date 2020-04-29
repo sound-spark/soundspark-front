@@ -1,19 +1,24 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {AudioRecord} from '../model/audio-record.model';
 import {UploadFileService} from '../service/upload/upload-file.service';
 import {AudioRecordingService} from '../service/audioRecording/audio-recording.service';
+import {TranscriptionResponse} from '../model/transcription-response.model';
+
 
 @Component({
     selector: 'app-audio',
     templateUrl: './audio.component.html',
     styleUrls: ['./audio.component.css']
 })
-export class AudioComponent implements OnInit, OnDestroy {
+export class AudioComponent implements OnDestroy {
     isRecording = false;
     recordedTime;
-    blobUrl;
-    blob: AudioRecord;
+    audioURL;
+    sanitizedAudioURL;
+    audioRecord: AudioRecord;
+    statusMessage: string;
+    public transcription: TranscriptionResponse;
 
     constructor(private audioRecordingService: AudioRecordingService,
                 private sanitizer: DomSanitizer,
@@ -31,19 +36,25 @@ export class AudioComponent implements OnInit, OnDestroy {
         });
 
         this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-            this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
-            this.blob = data;
-            const file = new File([this.blob.blob], `user_record_${new Date().getTime()}.wav`,
+            this.audioURL = this.createResourceURL(data.audio);
+            this.sanitizedAudioURL = this.sanitizeResourceURL(this.audioURL);
+            this.audioRecord = data;
+            const file = new File([this.audioRecord.audio], this.audioRecord.title,
                 {type: 'audio/wav'});
-            this.uploadFileService.pushFileToStorage(file).subscribe();
+            this.uploadFileService.pushFileToServer(file).subscribe(response => {
+                    this.statusMessage = 'OK';
+                    this.transcription = new TranscriptionResponse(response.transcription);
+                },
+                error => {
+                    this.statusMessage = 'Ups...';
+                }
+            );
         });
     }
 
-    ngOnInit(): void {
-    }
-
     ngOnDestroy(): void {
-        this.abortRecording();
+        this.audioRecordingService.stopMedia();
+        URL.revokeObjectURL(this.audioURL);
     }
 
     startRecording() {
@@ -53,22 +64,26 @@ export class AudioComponent implements OnInit, OnDestroy {
         }
     }
 
-    abortRecording() {
-        if (this.isRecording) {
-            this.isRecording = false;
-            this.audioRecordingService.abortRecording();
-        }
-    }
-
     stopRecording() {
         if (this.isRecording) {
             this.audioRecordingService.stopRecording();
             this.isRecording = false;
         }
-
     }
 
     clearRecordedData() {
-        this.blobUrl = null;
+        URL.revokeObjectURL(this.audioURL);
+        this.audioURL = null;
+        this.statusMessage = null;
+        this.sanitizedAudioURL = null;
+        this.transcription = null;
+    }
+
+    createResourceURL(resource) {
+        return URL.createObjectURL(resource);
+    }
+
+    sanitizeResourceURL(resourceURL) {
+        return this.sanitizer.bypassSecurityTrustUrl(resourceURL);
     }
 }
