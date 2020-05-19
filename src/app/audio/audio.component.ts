@@ -18,6 +18,7 @@ export class AudioComponent implements OnDestroy {
     sanitizedAudioURL;
     audioRecord: AudioRecord;
     statusMessage: string;
+    responseError: boolean;
     public transcription: TranscriptionResponse;
 
     constructor(private audioRecordingService: AudioRecordingService,
@@ -44,9 +45,11 @@ export class AudioComponent implements OnDestroy {
             this.uploadFileService.pushFileToServer(file).subscribe(response => {
                     this.statusMessage = 'OK';
                     this.transcription = new TranscriptionResponse(response.transcription);
+                    this.responseError = false;
                 },
                 error => {
-                    this.statusMessage = 'Ups...';
+                    this.statusMessage = 'Something went wrong';
+                    this.responseError = true;
                 }
             );
         });
@@ -75,6 +78,7 @@ export class AudioComponent implements OnDestroy {
         URL.revokeObjectURL(this.audioURL);
         this.audioURL = null;
         this.statusMessage = null;
+        this.responseError = null;
         this.sanitizedAudioURL = null;
         this.transcription = null;
     }
