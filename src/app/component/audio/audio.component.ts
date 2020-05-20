@@ -1,9 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {AudioRecord} from '../model/audio-record.model';
-import {UploadFileService} from '../service/upload/upload-file.service';
-import {AudioRecordingService} from '../service/audioRecording/audio-recording.service';
-import {TranscriptionResponse} from '../model/transcription-response.model';
+import {UploadFileService} from '../../service/upload/upload-file.service';
+import {AudioRecordingService} from '../../service/audioRecording/audio-recording.service';
+import {TranscriptionResponse} from '../../model/transcription-response.model';
 
 
 @Component({
@@ -16,10 +15,10 @@ export class AudioComponent implements OnDestroy {
     recordedTime;
     audioURL;
     sanitizedAudioURL;
-    audioRecord: AudioRecord;
+    audioRecord: Blob;
     statusMessage: string;
     responseError: boolean;
-    public transcription: TranscriptionResponse;
+    transcription: TranscriptionResponse;
 
     constructor(private audioRecordingService: AudioRecordingService,
                 private sanitizer: DomSanitizer,
@@ -37,12 +36,10 @@ export class AudioComponent implements OnDestroy {
         });
 
         this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-            this.audioURL = this.createResourceURL(data.audio);
+            this.audioURL = this.createResourceURL(data);
             this.sanitizedAudioURL = this.sanitizeResourceURL(this.audioURL);
             this.audioRecord = data;
-            const file = new File([this.audioRecord.audio], this.audioRecord.title,
-                {type: 'audio/wav'});
-            this.uploadFileService.pushFileToServer(file).subscribe(response => {
+            this.uploadFileService.pushFileToServer(data).subscribe(response => {
                     this.statusMessage = 'OK';
                     this.transcription = new TranscriptionResponse(response.transcription);
                     this.responseError = false;

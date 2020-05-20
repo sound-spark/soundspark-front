@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import * as RecordRTC from 'recordrtc';
 import * as moment from 'moment/moment';
 import {Observable, Subject} from 'rxjs';
-import {AudioRecord} from '../../model/audio-record.model';
 
 @Injectable({
     providedIn: 'root'
@@ -14,14 +13,14 @@ export class AudioRecordingService {
     private interval;
     private startTime;
     // tslint:disable-next-line:variable-name
-    private _recorded = new Subject<AudioRecord>();
+    private _recorded = new Subject<Blob>();
     // tslint:disable-next-line:variable-name
     private _recordingTime = new Subject<number>();
     // tslint:disable-next-line:variable-name
     private _recordingFailed = new Subject<string>();
 
 
-    getRecordedBlob(): Observable<AudioRecord> {
+    getRecordedBlob(): Observable<Blob> {
         return this._recorded.asObservable();
     }
 
@@ -44,7 +43,6 @@ export class AudioRecordingService {
             this.stream = stream;
             this.record();
         }).catch(error => {
-            alert(error);
             this._recordingFailed.next();
         });
     }
@@ -76,9 +74,8 @@ export class AudioRecordingService {
         if (this.recorder) {
             this.recorder.stop((blob) => {
                 if (this.startTime) {
-                    const title = encodeURIComponent(`user_record_${new Date().getTime()}.wav`);
                     this.stopMedia();
-                    this._recorded.next({audio: blob, title});
+                    this._recorded.next(blob);
                 }
             }, () => {
                 this.stopMedia();

@@ -11,10 +11,10 @@ export class UploadFileService {
     constructor(private http: HttpClient) {
     }
 
-    pushFileToServer(file: File): Observable<TranscriptionResponse> {
+    pushFileToServer(blob: Blob): Observable<TranscriptionResponse> {
         const url = environment.api + '/transcription';
         const formData = new FormData();
-        formData.append('file', file);
+        formData.append('file', blob);
         return this.http.post<TranscriptionResponse>(url, formData);
     }
 }
