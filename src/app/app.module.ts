@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {AudioComponent} from './component/audio/audio.component';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from './material.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        MaterialModule
     ],
     providers: [],
     bootstrap: [AppComponent]
