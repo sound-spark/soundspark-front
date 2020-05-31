@@ -1,18 +1,65 @@
-<div class="title" fxLayout.xs="column" fxLayoutAlign="center center" fx>
-    <h1>AUTOMATIC</h1>
-    <h1>&nbsp;SPEECH&nbsp;</h1>
-    <h1>RECOGNITION</h1>
+<div class="title-container" fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center">
+    <h1 class="title">AUTOMATIC</h1>
+    <h1 class="title">&nbsp;SPEECH&nbsp;</h1>
+    <h1 class="title">RECOGNITION</h1>
 </div>
-<div>
-    <p>
-        There are several ASR solutions on the market right now but still there are many gaps to fill. As voice and
-        speech recognition market is expected to grow even faster now, we decided to build our own solution step by
-        step. Our goal is to create working ASR for polish language and explore different approaches. Working means to
-        achieve Word Error Rate on level ~5% for clean speech.
-        Our approach is to make the best we can not investing any money, that means we use only open-sourced data and
-        only our home computation resources.
-    </p>
+<div fxLayoutAlign="center center">
+    <div class="asr-section-container">
+        <h3 class="asr-section">
+            There are several ASR solutions on the market right now but still there are many gaps to fill.
+            As voice and
+            speech recognition market is expected to grow even faster now, we decided to build our own solution step by
+            step.
+        </h3>
+        <h3 class="asr-section">
+            Our goal is to create working ASR for polish language and explore different approaches. Working means to
+            achieve Word Error Rate on level ~5% for clean speech.
+        </h3>
+        <h3 class="asr-section">
+            Our approach is to make the best we can not investing any money, that means we use only open-sourced data
+            and only our home computation resources.
+        </h3>
+    </div>
 </div>
-<div>
-    <h3>ELO ELO</h3>
+<div fxLayout fxLayoutAlign="center" style="max-width: 600px">
+    <div class="tech-container" fxLayout="column" fxLayoutAlign="start">
+        <h2 class="tech-text">END-TO-END</h2>
+        <h3 class="tech-text">
+            WER = 106%
+            <mat-icon [inline]="true" color="primary">done</mat-icon>
+        </h3>
+
+    </div>
+    <div class="tech-container" fxLayout="column" fxLayoutAlign="end">
+        <h2 class="tech-text">KALDI</h2>
+        <h3 class="tech-text">
+            IN PROGRESS
+            <mat-icon [inline]="true" color="accent">play_arrow</mat-icon>
+        </h3>
+    </div>
+</div>
+<div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center">
+    <div style="background: dodgerblue; height: 500px; width: 300px; margin-bottom: 30px"></div>
+    <div class="tech-container" style="max-width: 300px">
+        <p class="tech-text">
+            There are several E2E working solution on the market. Their pros is that they are fairly easy to design. On
+            the other hand they need a huge amount of data and computation resources to train working model.
+        </p>
+        <p class="tech-text">
+            With 52 hours of clean speech to work with and laptop, we didn't expect to achieve good performance. Only 32
+            hours of speech was used for training. The rest of data was used for test and validation. On the left side
+            you can see image with model architecture that was trained.
+            As speech features we used MFCC. To match speech input frames into output labels we used CTC technique.
+            Even though keras method 'fit_generator' was used to minimize memory consumption needed for training
+            process, it was crushing because of 'out of memory' error. Training had to be divided into several turns of
+            5 epochs each.
+        </p>
+        <p class="tech-text">
+            As we knew that this solution will not be the best we finished this experiment at this stage.
+            You can give it a try here
+        </p>
+        <div fxLayoutAlign="center center">
+        <button  mat-raised-button color="primary" routerLink="/asr">Let's Go!</button>
+        </div>
+    </div>
 </div>

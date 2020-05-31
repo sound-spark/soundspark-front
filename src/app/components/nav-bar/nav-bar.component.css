@@ -1,10 +1,16 @@
 a {
     text-decoration: none;
     color: white;
+    font-size: 16px;
 }
 ul {
     list-style-type: none;
 }
 mat-toolbar {
-    background: black;
+    background: #0f1113;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 20px;
 }

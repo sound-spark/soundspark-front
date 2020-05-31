@@ -1,11 +1,30 @@
-h1, h2, h3, h4, p {
-    color: aliceblue;
-    margin: 0;
-}
 .title {
     margin: 0;
 }
+
 .title-container {
     margin-bottom: 16px;
 }
 
+.content-container {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.asr-section {
+    text-align: center;
+}
+
+.asr-section-container {
+    max-width: 600px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.tech-container {
+    margin: 0 30px 30px;
+}
+.tech-text {
+    margin: 0;
+    text-align: center;
+}

@@ -1,9 +1,9 @@
-<mat-sidenav-container style="background: black">
+<mat-sidenav-container>
     <mat-sidenav #sidenav position="end" mode="over">
-        <app-side-nav></app-side-nav>
+        <app-side-nav></app-side-nav >
     </mat-sidenav>
     <mat-sidenav-content>
-        <app-nav-bar (toggleSidenav)="sidenav.toggle()"></app-nav-bar>
+        <app-nav-bar  (toggleSidenav)="sidenav.toggle()"></app-nav-bar>
         <main>
             <router-outlet></router-outlet>
         </main>
