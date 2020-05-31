@@ -1,2 +1,11 @@
-<router-outlet></router-outlet>
-<app-audio></app-audio>
+<mat-sidenav-container style="background: black">
+    <mat-sidenav #sidenav position="end" mode="side">
+        <app-side-nav></app-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-nav-bar (toggleSidenav)="sidenav.toggle()"></app-nav-bar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -7,11 +7,15 @@ import {AudioComponent} from './component/audio/audio.component';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
+import { NavBarComponent } from './component/nav-bar/nav-bar.component';
+import { SideNavComponent } from './component/side-nav/side-nav.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        AudioComponent
+        AudioComponent,
+        NavBarComponent,
+        SideNavComponent
     ],
     imports: [
         BrowserModule,

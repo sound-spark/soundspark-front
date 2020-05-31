@@ -1,0 +1,10 @@
+a {
+    text-decoration: none;
+    color: white;
+}
+ul {
+    list-style-type: none;
+}
+mat-toolbar {
+    background: black;
+}
