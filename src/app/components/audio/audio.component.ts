@@ -1,8 +1,8 @@
 import {Component, OnDestroy} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-import {UploadFileService} from '../../service/upload/upload-file.service';
-import {AudioRecordingService} from '../../service/audioRecording/audio-recording.service';
-import {TranscriptionResponse} from '../../model/transcription-response.model';
+import {UploadFileService} from '../../services/upload/upload-file.service';
+import {AudioRecordingService} from '../../services/audioRecording/audio-recording.service';
+import {TranscriptionResponse} from '../../models/transcription-response.model';
 
 
 @Component({
