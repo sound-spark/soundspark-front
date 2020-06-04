@@ -1,0 +1,10 @@
+.welcome-heading-container {
+margin-bottom: 32px;
+}
+.welcome-heading {
+    margin: 0;
+}
+.welcome-page-desc-container {
+    max-width: 600px;
+    text-align: center;
+}

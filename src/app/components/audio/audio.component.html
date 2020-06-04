@@ -1,21 +1,19 @@
-<div>
-    <button class="start-button" *ngIf="!isRecording && !audioURL" (click)="startRecording()">Start Recording</button>
-    <button class="stop-button" *ngIf="isRecording && !audioURL" (click)="stopRecording()">Stop Recording</button>
-    <button class="cancel-button" *ngIf="!isRecording && audioURL" (click)="clearRecordedData()">Clear Recording</button>
-    <div *ngIf="isRecording && !audioURL"> {{recordedTime}} / 15</div>
-    <div *ngIf="!isRecording && audioURL">
-        <audio controls>
-            <source [src]="sanitizedAudioURL" type="audio/wav">
-        </audio>
-
-    </div>
-    <div *ngIf="statusMessage">
-        <p>{{statusMessage}}</p>
-    </div>
+<mat-progress-bar [hidden]="isRecording" mode="determinate" value="{{recordedTime /15*100}}"></mat-progress-bar>
+<div fxLayout fxLayoutAlign="end" [hidden]="!isRecording">
+    <p style="text-align: end">{{recordedTime}}/15s</p>
+</div>
+<div class="audio-buttons-container" fxLayout fxLayoutAlign="center">
+    <button class="audio-buttons" mat-icon-button *ngIf="!isRecording && !audioURL" (click)="startRecording()" color="warn" ><mat-icon>mic</mat-icon></button>
+    <button class="audio-buttons" mat-icon-button *ngIf="isRecording && !audioURL" (click)="stopRecording()" color="warn"><mat-icon>stop</mat-icon></button>
+    <button class="audio-buttons" mat-icon-button *ngIf="!isRecording && audioURL" (click)="clearRecordedData()" color="warn"><mat-icon>delete</mat-icon></button>
+</div>
+<div class="response-container" fxLayoutAlign="center">
     <div *ngIf="responseError">
         <img class="error-gif" src="assets/images/error.gif"/>
+        <p style="text-align: center">{{statusMessage}}</p>
     </div>
     <div *ngIf="transcription">
-        <h3>{{transcription.transcription}}</h3>
+        <p *ngIf="transcription.transcription.length>0" style="text-align: center">{{transcription.transcription}}</p>
+        <p *ngIf="transcription.transcription.length<=0" style="text-align: center">Did You say something?</p>
     </div>
 </div>
