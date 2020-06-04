@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-root',
