@@ -38,8 +38,10 @@
         </h3>
     </div>
 </div>
-<div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center">
-    <div style="background: dodgerblue; height: 500px; width: 300px; margin-bottom: 30px"></div>
+<div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap.xs="20px">
+    <div fxLayoutAlign="center">
+        <img src="assets/images/model.webp" style="max-width: 300px">
+    </div>
     <div class="tech-container" style="max-width: 300px">
         <p class="tech-text">
             There are several E2E working solution on the market. Their pros is that they are fairly easy to design. On
@@ -59,7 +61,7 @@
             You can give it a try here
         </p>
         <div fxLayoutAlign="center center">
-        <button  mat-raised-button color="primary" routerLink="/asr">Let's Go!</button>
+        <button  class="asr-button" mat-raised-button routerLink="/asr">Let's Go!</button>
         </div>
     </div>
 </div>
