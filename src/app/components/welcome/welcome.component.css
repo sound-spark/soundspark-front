@@ -2,7 +2,10 @@
 margin-bottom: 32px;
 }
 .welcome-heading {
-    margin: 0;
+    margin: 6px;
+}
+.soundspark-heading {
+    font-size: 2.7em;
 }
 .welcome-page-desc-container {
     max-width: 600px;
