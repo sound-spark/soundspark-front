@@ -1,11 +1,18 @@
-mat-icon {
-    font-size: 70px;
-    height: 70px;
-    width: 70px;
-}
 .audio-buttons-container {
     margin-top: 30px;
 }
 .response-container {
     margin-top: 20px;
+    text-align: center;
+}
+.mat-icon {
+    display: block;
+    width: 70px;
+    height: 70px;
+    font-size: 70px;
+    line-height: 70px;
+
+}
+.function-buttons {
+    margin-top: 100px;
 }

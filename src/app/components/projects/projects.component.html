@@ -3,66 +3,78 @@
     <h1 class="title">&nbsp;SPEECH&nbsp;</h1>
     <h1 class="title">RECOGNITION</h1>
 </div>
-<div fxLayoutAlign="center center">
-    <div class="asr-section-container">
-        <h3 class="asr-section">
-            There are several ASR solutions on the market right now but still there are many gaps to fill.
-            As voice and
-            speech recognition market is expected to grow even faster now, we decided to build our own solution step by
-            step.
-        </h3>
-        <h3 class="asr-section">
-            Our goal is to create working ASR for polish language and explore different approaches. Working means to
-            achieve Word Error Rate on level ~5% for clean speech.
-        </h3>
-        <h3 class="asr-section">
-            Our approach is to make the best we can not investing any money, that means we use only open-sourced data
-            and only our home computation resources.
-        </h3>
-    </div>
-</div>
-<div fxLayout fxLayoutAlign="center" style="max-width: 600px; margin-bottom: 20px">
-    <div class="tech-container" fxLayout="column" fxLayoutAlign="start">
-        <h2 class="tech-text">END-TO-END</h2>
-        <h3 class="tech-text">
-            WER = 106%
-            <mat-icon [inline]="true" color="primary">done</mat-icon>
-        </h3>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <div class="projects-container">
+        <div>
+            <h3>
+                There are several ASR solutions on the market right now but still there are many gaps to fill.
+                As voice and
+                speech recognition market is expected to grow even faster now, we decided to build our own solution step
+                by
+                step.
+            </h3>
+            <h3>
+                Our goal is to create working ASR for polish language and explore different approaches. Working means to
+                achieve Word Error Rate on level ~5% for clean speech.
+            </h3>
+            <h3>
+                Our approach is to make the best we can not investing any money, that means we use only open-sourced
+                data
+                and only our home computation resources.
+            </h3>
+        </div>
 
-    </div>
-    <div class="tech-container" fxLayout="column" fxLayoutAlign="end">
-        <h2 class="tech-text">KALDI</h2>
-        <h3 class="tech-text">
-            IN PROGRESS
-            <mat-icon [inline]="true" color="accent">play_arrow</mat-icon>
-        </h3>
-    </div>
-</div>
-<div fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign.gt-xs="center start"
-     fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayoutGap.gt-xs="20px">
-    <div fxLayoutAlign="center" class="tech-container">
-        <img src="assets/images/model.webp" style="max-width: 300px">
-    </div>
-    <div class="tech-container" style="max-width: 300px">
-        <p class="tech-text">
-            There are several E2E working solution on the market. Their pros is that they are fairly easy to design. On
-            the other hand they need a huge amount of data and computation resources to train working model.
-        </p>
-        <p class="tech-text">
-            With 52 hours of clean speech to work with and laptop, we didn't expect to achieve good performance. Only 32
-            hours of speech was used for training. The rest of data was used for test and validation. On the left side
-            you can see image with model architecture that was trained.
-            As speech features we used MFCC. To match speech input frames into output labels we used CTC technique.
-            Even though keras method 'fit_generator' was used to minimize memory consumption needed for training
-            process, it was crushing because of 'out of memory' error. Training had to be divided into several turns of
-            5 epochs each.
-        </p>
-        <p class="tech-text">
-            As we knew that this solution will not be the best we finished this experiment at this stage.
-            You can give it a try here
-        </p>
-        <div fxLayoutAlign="center center">
-        <button  class="asr-button" mat-raised-button routerLink="/asr">Let's Go!</button>
+        <div class="e2e-container">
+            <h2 class="e2e-title">END&#8209;TO&#8209;END</h2>
+            <p>
+                There are several E2E working solution on the market. Their pros is that they are fairly easy to design.
+                On
+                the other hand they need a huge amount of data and computation resources to train working model.
+            </p>
+            <p>
+                With 52 hours of clean speech to work with and laptop, we didn't expect to achieve good performance.
+                Only 32
+                hours of speech was used for training. The rest of data was used for test and validation.
+            </p>
+
+            <div fxLayoutAlign="center">
+                <div class="e2e-description-img-wrapper"
+                     fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="center center" fxLayoutGap.gt-xs="50px"
+                     fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="50px">
+                    <div fxLayoutAlign="center">
+                        <img class="e2e-model-img" src="assets/images/model.jpg">
+                    </div>
+                    <div class="e2e-description-img-container">
+                        <p class="e2e-description">
+                            On the left side
+                            you can see image with model architecture that was trained.
+                            As speech features we used MFCC. To match speech input frames into output labels we used CTC
+                            technique.
+                            Even though keras method 'fit_generator' was used to minimize memory consumption needed for
+                            training
+                            process, it was crushing because of 'out of memory' error. Training had to be divided into
+                            several turns of
+                            5 epochs each.
+                        </p>
+                        <p>
+                            As we knew that this solution will not be the best we finished this experiment at this
+                            stage.
+                        </p>
+                        <div class="e2e-try-it-container" fxLayout="column" fxLayoutAlign="center center">
+                            <p>You can give it a try here</p>
+                            <h3>WER = 106%</h3>
+                            <button class="e2e-try-it-button" mat-raised-button routerLink="/asr">Try it!</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kaldi-container">
+            <div fxLayout="column" fxLayoutAlign="center">
+                <h2 class="kaldi-title">KALDI</h2>
+                <h3 class="kaldi-title">IN PROGRESS</h3>
+                <p>STAY TUNED!</p>
+            </div>
         </div>
     </div>
 </div>

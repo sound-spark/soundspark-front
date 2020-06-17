@@ -1,18 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
-.error-gif {
-    max-width: 100%;
-}
-
-html, body {
+html {
     height: 100%;
+}
+html, body {
     background-color: black;
 }
 
 body {
-    margin: 0;
+    height: calc(100% - 73px);
+    margin: 73px 0 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-h1,h2,p,h3,h4,h5, h6 {
+p, h1, h2, h3, h4, h5, h6 {
     color: aliceblue;
+}
+
+.mat-snack-bar-container {
+    text-align: center;
+}
+
+.mat-simple-snackbar {
+    display: inline-block !important;
 }
