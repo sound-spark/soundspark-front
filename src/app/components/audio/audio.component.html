@@ -30,8 +30,8 @@
         <p>{{transcription.transcription}}</p>
     </div>
     <div class="function-buttons" *ngIf="!isTranscriptionEmpty && transcription" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
-        <button mat-raised-button color="warn" (click)="copyToClipboard()">Copy to clipboard</button>
-        <button mat-raised-button color="warn" (click)="downloadTxt()">Export as .txt</button>
+        <button mat-raised-button color="warn">Copy to clipboard</button>
+        <button mat-raised-button color="warn">Export as .txt</button>
     </div>
     <div *ngIf="isTranscriptionEmpty">
         <p>Did You say something?</p>
