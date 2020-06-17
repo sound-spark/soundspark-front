@@ -4,7 +4,6 @@
 
 .title-container {
     margin-bottom: 32px;
-    margin-top: 16px;
 }
 
 .projects-container {
@@ -53,7 +52,7 @@
     margin-bottom: 0;
 }
 .kaldi-container {
-    margin-bottom: 350px;
+    margin-bottom: 50vh;
 }
 .e2e-container {
     margin-bottom: 100px;
