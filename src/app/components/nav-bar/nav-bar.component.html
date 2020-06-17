@@ -8,8 +8,22 @@
         </ul>
     </div>
     <div fxFlex fxLayoutAlign="end" fxHide.gt-xs>
-        <button mat-icon-button (click)="onToggleSidenav()">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon color="primary">menu</mat-icon>
         </button>
     </div>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/about">
+            <mat-icon>emoji_people</mat-icon>
+            <span>About Us</span>
+        </button>
+        <button mat-menu-item routerLink="/projects">
+            <mat-icon>list</mat-icon>
+            <span>Projects</span>
+        </button>
+        <button mat-menu-item routerLink="/contact">
+            <mat-icon>contacts</mat-icon>
+            <span>Contact</span>
+        </button>
+    </mat-menu>
 </mat-toolbar>
