@@ -8,7 +8,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ProjectsComponent } from './components/projects/projects.component';
@@ -19,7 +18,6 @@ import { ContactComponent } from './components/contact/contact.component';
         AppComponent,
         AudioComponent,
         NavBarComponent,
-        SideNavComponent,
         WelcomeComponent,
         AboutUsComponent,
         ProjectsComponent,
