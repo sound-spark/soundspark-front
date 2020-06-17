@@ -7,4 +7,9 @@ margin-bottom: 32px;
 .welcome-page-desc-container {
     max-width: 600px;
     text-align: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.welcome-page-desc-wrapper {
+    width: 100%;
 }

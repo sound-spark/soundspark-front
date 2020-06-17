@@ -8,8 +8,7 @@ ul {
 }
 mat-toolbar {
     background: black;
-    position: sticky;
-    position: -webkit-sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.75);

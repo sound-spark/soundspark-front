@@ -3,6 +3,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {UploadFileService} from '../../services/upload/upload-file.service';
 import {AudioRecordingService} from '../../services/audioRecording/audio-recording.service';
 import {TranscriptionResponse} from '../../models/transcription-response.model';
+import {Clipboard} from '@angular/cdk/clipboard';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -19,10 +22,17 @@ export class AudioComponent implements OnDestroy {
     statusMessage: string;
     responseError: boolean;
     transcription: TranscriptionResponse;
+    isTranscriptionEmpty: boolean;
+    transcriptionTxtURL: string;
+    isWaitingForResponse = false;
+    private sendRequestToASRSub: Subscription;
+    private getBlobSub: Subscription;
 
     constructor(private audioRecordingService: AudioRecordingService,
                 private sanitizer: DomSanitizer,
-                private uploadFileService: UploadFileService) {
+                private uploadFileService: UploadFileService,
+                private clipboard: Clipboard,
+                private snackBar: MatSnackBar) {
 
         this.audioRecordingService.recordingFailed().subscribe(() => {
             this.isRecording = false;
@@ -35,16 +45,20 @@ export class AudioComponent implements OnDestroy {
             }
         });
 
-        this.audioRecordingService.getRecordedBlob().subscribe((data) => {
+        this.getBlobSub = this.audioRecordingService.getRecordedBlob().subscribe((data) => {
             this.audioURL = this.createResourceURL(data);
             this.sanitizedAudioURL = this.sanitizeResourceURL(this.audioURL);
             this.audioRecord = data;
-            this.uploadFileService.pushFileToServer(data).subscribe(response => {
+            this.isWaitingForResponse = true;
+            this.sendRequestToASRSub = this.uploadFileService.pushFileToServer(data).subscribe(response => {
+                    this.isWaitingForResponse = false;
                     this.statusMessage = 'OK';
                     this.transcription = new TranscriptionResponse(response.transcription);
                     this.responseError = false;
+                    this.checkIfTranscriptionIsEmpty(this.transcription);
                 },
                 error => {
+                    this.isWaitingForResponse = false;
                     this.statusMessage = 'Something went wrong';
                     this.responseError = true;
                 }
@@ -55,6 +69,7 @@ export class AudioComponent implements OnDestroy {
     ngOnDestroy(): void {
         this.audioRecordingService.stopMedia();
         URL.revokeObjectURL(this.audioURL);
+        URL.revokeObjectURL(this.transcriptionTxtURL);
     }
 
     startRecording() {
@@ -78,6 +93,8 @@ export class AudioComponent implements OnDestroy {
         this.responseError = null;
         this.sanitizedAudioURL = null;
         this.transcription = null;
+        this.isTranscriptionEmpty = null;
+        URL.revokeObjectURL(this.transcriptionTxtURL);
     }
 
     createResourceURL(resource) {
@@ -86,5 +103,35 @@ export class AudioComponent implements OnDestroy {
 
     sanitizeResourceURL(resourceURL) {
         return this.sanitizer.bypassSecurityTrustUrl(resourceURL);
+    }
+
+    copyToClipboard() {
+        this.clipboard.copy(this.transcription.transcription);
+        this.openSnackBar('Copied to clipboard!',2000);
+    }
+
+    openSnackBar(message: string, duration: number, action?: string) {
+        this.snackBar.open(message, action, {
+            duration
+        });
+    }
+    checkIfTranscriptionIsEmpty(transcription: TranscriptionResponse) {
+        this.isTranscriptionEmpty = transcription.transcription === null;
+    }
+
+    downloadTxt() {
+        const blob = new Blob([this.transcription.transcription], {type: 'plain/text'});
+        this.transcriptionTxtURL = URL.createObjectURL(blob);
+        const anchor = document.createElement('a');
+        anchor.href = this.transcriptionTxtURL;
+        anchor.download = `transcription_${Date.now()}.txt`;
+        const ev = new MouseEvent('click',{});
+        anchor.dispatchEvent(ev);
+        anchor.remove();
+    }
+
+    restartRecording() {
+        this.clearRecordedData();
+        this.startRecording();
     }
 }

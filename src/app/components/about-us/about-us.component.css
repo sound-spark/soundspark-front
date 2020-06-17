@@ -1,17 +1,20 @@
 .about-us-header {
     text-align: center;
 }
+
 mat-card-content, mat-card-title, mat-card-subtitle {
     color: aliceblue;
     text-align: center;
 }
+
 mat-card {
     background: inherit;
 }
+
 .about-us-img {
-    max-height: 350px;
-    object-fit: cover;
+
 }
+
 .card-container {
-    width: 100%;
+    width: 900px;
 }
