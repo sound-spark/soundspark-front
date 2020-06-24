@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {ImageComponent} from '../image/image.component';
 
 @Component({
   selector: 'app-projects',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+    showImg(src: string) {
+      this.dialog.open(ImageComponent, {
+        maxWidth: '98vw',
+        data: src
+      });
+    }
 }

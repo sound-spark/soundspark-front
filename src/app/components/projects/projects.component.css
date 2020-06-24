@@ -3,7 +3,7 @@
 }
 
 .title-container {
-    margin-bottom: 32px;
+    margin-bottom: 64px;
 }
 
 .projects-container {
@@ -15,7 +15,7 @@
 }
 
 .e2e-description-img-container {
-    max-width: 450px;
+    max-width: 600px;
 }
 
 .e2e-description {
@@ -32,28 +32,39 @@
 
 .e2e-model-img {
     max-width: 90%;
+    transition: transform 0.20s
+}
+
+.e2e-model-img:hover {
+    cursor: pointer;
+    -ms-transform: scale(1.01);
+    -webkit-transform: scale(1.01); /* Safari 3-8 */
+    transform: scale(1.01);
 }
 
 .e2e-description-img-wrapper {
     margin-bottom: 40px;
-    max-width: 800px;
-    margin-top: 32px;
+    max-width: 900px;
+    margin-top: 86px;
 }
 
 .e2e-try-it-container {
-    margin-top: 30px;
+    margin-top: 80px;
     margin-bottom: 50px;
 }
 
 .e2e-title {
     margin-top: 70px;
 }
+
 .kaldi-title {
     margin-bottom: 0;
 }
+
 .kaldi-container {
     margin-bottom: 50vh;
 }
+
 .e2e-container {
     margin-bottom: 100px;
 }

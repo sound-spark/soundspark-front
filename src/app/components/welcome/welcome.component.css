@@ -1,8 +1,8 @@
 .welcome-heading-container {
-margin-bottom: 32px;
+margin-bottom: 70px;
 }
 .welcome-heading {
-    margin: 6px;
+    margin-bottom: 10px;
 }
 .soundspark-heading {
     font-size: 2.7em;
@@ -12,6 +12,7 @@ margin-bottom: 32px;
     text-align: center;
     padding-left: 16px;
     padding-right: 16px;
+    padding-bottom: 100px;
 }
 .welcome-page-desc-wrapper {
     width: 100%;

@@ -39,10 +39,10 @@
 
             <div fxLayoutAlign="center">
                 <div class="e2e-description-img-wrapper"
-                     fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="center center" fxLayoutGap.gt-xs="50px"
+                     fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="center start" fxLayoutGap.gt-xs="50px"
                      fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="50px">
                     <div fxLayoutAlign="center">
-                        <img class="e2e-model-img" src="assets/images/model.jpg">
+                        <img (click)="showImg(modelImg.src)" #modelImg  class="e2e-model-img" src="assets/images/model.jpg">
                     </div>
                     <div class="e2e-description-img-container">
                         <p class="e2e-description">
@@ -50,6 +50,8 @@
                             you can see image with model architecture that was trained.
                             As speech features we used MFCC. To match speech input frames into output labels we used CTC
                             technique.
+                        </p>
+                        <p>
                             Even though keras method 'fit_generator' was used to minimize memory consumption needed for
                             training
                             process, it was crushing because of 'out of memory' error. Training had to be divided into

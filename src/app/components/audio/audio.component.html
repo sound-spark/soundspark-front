@@ -1,40 +1,44 @@
-<div class="audio-buttons-container" fxLayout fxLayoutAlign="center">
-    <button color="warn" mat-raised-button *ngIf="!isRecording && !audioURL" (click)="startRecording()">
-        <mat-icon>mic</mat-icon>
-    </button>
-    <button class="audio-buttons" mat-raised-button *ngIf="isRecording && !audioURL" (click)="stopRecording()"
-            color="warn">
-        <mat-icon>stop</mat-icon>
-    </button>
-    <button class="audio-buttons" mat-raised-button *ngIf="responseError" (click)="restartRecording()"
-            color="warn">
-        <mat-icon>cached</mat-icon>
-    </button>
-    <button class="audio-buttons" mat-raised-button
-            *ngIf="!isRecording && audioURL && !isWaitingForResponse && !responseError" (click)="clearRecordedData()"
-            color="warn">
-        <mat-icon>delete</mat-icon>
-    </button>
-    <mat-spinner *ngIf="isWaitingForResponse" [diameter]="70"></mat-spinner>
-</div>
-<div class="response-container" fxLayout="column" fxLayoutAlign="center center">
-    <div *ngIf="isRecording">
-        <p>
-            {{recordedTime}}/15
-        </p></div>
-    <div *ngIf="responseError">
-        <p>Something went wrong.</p>
-        <p>Please try again.</p>
+<div class="audio-container">
+    <div class="audio-buttons-container" fxLayout fxLayoutAlign="center">
+        <button color="warn" mat-raised-button *ngIf="!isRecording && !audioURL" (click)="startRecording()">
+            <mat-icon>mic</mat-icon>
+        </button>
+        <button class="audio-buttons" mat-raised-button *ngIf="isRecording && !audioURL" (click)="stopRecording()"
+                color="warn">
+            <mat-icon>stop</mat-icon>
+        </button>
+        <button class="audio-buttons" mat-raised-button *ngIf="responseError" (click)="restartRecording()"
+                color="warn">
+            <mat-icon>cached</mat-icon>
+        </button>
+        <button class="audio-buttons" mat-raised-button
+                *ngIf="!isRecording && audioURL && !isWaitingForResponse && !responseError"
+                (click)="clearRecordedData()"
+                color="warn">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <mat-spinner *ngIf="isWaitingForResponse" [diameter]="70"></mat-spinner>
     </div>
-    <div *ngIf="!isTranscriptionEmpty && transcription">
-        <p>{{transcription.transcription}}</p>
-    </div>
-    <div class="function-buttons" *ngIf="!isTranscriptionEmpty && transcription" fxLayout="column" fxLayoutAlign="center" fxLayoutGap="15px">
-        <button mat-raised-button color="warn" (click)="copyToClipboard()">Copy to clipboard</button>
-        <button mat-raised-button color="warn" (click)="downloadTxt()">Export as .txt</button>
-    </div>
-    <div *ngIf="isTranscriptionEmpty">
-        <p>Did You say something?</p>
-        <p>Please try again.</p>
+    <div class="response-container" fxLayout="column" fxLayoutAlign="center center">
+        <div *ngIf="isRecording">
+            <p>
+                {{recordedTime}}/15
+            </p></div>
+        <div *ngIf="responseError">
+            <p>Something went wrong.</p>
+            <p>Please try again.</p>
+        </div>
+        <div *ngIf="!isTranscriptionEmpty && transcription">
+            <p>{{transcription.transcription}}</p>
+        </div>
+        <div class="function-buttons" *ngIf="!isTranscriptionEmpty && transcription" fxLayout="column"
+             fxLayoutAlign="center" fxLayoutGap="15px">
+            <button mat-raised-button color="warn" (click)="copyToClipboard()">Copy to clipboard</button>
+            <button mat-raised-button color="warn" (click)="downloadTxt()">Export as .txt</button>
+        </div>
+        <div *ngIf="isTranscriptionEmpty">
+            <p>Did You say something?</p>
+            <p>Please try again.</p>
+        </div>
     </div>
 </div>

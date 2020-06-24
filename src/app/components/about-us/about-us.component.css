@@ -9,6 +9,8 @@ mat-card-content, mat-card-title, mat-card-subtitle {
 
 mat-card {
     background: inherit;
+    max-width: 360px;
+    justify-content: center;
 }
 
 .about-us-img {
@@ -17,4 +19,7 @@ mat-card {
 
 .card-container {
     width: 900px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 50px;
 }

@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 html, body {
     background-color: black;
-    height: 100%;
+
 }
 
 body {
+    height: 100%;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
@@ -19,4 +20,9 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .mat-simple-snackbar {
     display: inline-block !important;
+}
+
+mat-dialog-container {
+    background: none !important;
+    padding: 0 !important;
 }
