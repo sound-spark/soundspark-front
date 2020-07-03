@@ -6,35 +6,34 @@
 <div fxLayout="column" fxLayoutAlign="center center">
     <div class="projects-container">
         <div>
-            <h3>
-                There are several ASR solutions on the market right now but still there are many gaps to fill.
-                As voice and
-                speech recognition market is expected to grow even faster now, we decided to build our own solution step
-                by
-                step.
+            <h3>There are several ASR solutions on the market right now but there are still many gaps to fill. As voice
+                and speech recognition market is expected to grow even faster now, we decided to build our own solution
+                from scratch.
             </h3>
             <h3>
-                Our goal is to create working ASR for polish language and explore different approaches. Working means to
-                achieve Word Error Rate on level ~5% for clean speech.
+                Our goal is to create a working ASR for the Polish language while testing different approaches to
+                understand their advantages and their shortcomings.
             </h3>
             <h3>
-                Our approach is to make the best we can not investing any money, that means we use only open-sourced
-                data
-                and only our home computation resources.
+                Our success criteria is to achieve Word Error Rate on level ~5% for the clean speech.
+            </h3>
+            <h3>
+                We are just at the beginning of our journey-for this reason at this point of time we use only
+                open-sourced data for testing and our home computation resources.
             </h3>
         </div>
 
         <div class="e2e-container">
             <h2 class="e2e-title">END&#8209;TO&#8209;END</h2>
             <p>
-                There are several E2E working solution on the market. Their pros is that they are fairly easy to design.
-                On
-                the other hand they need a huge amount of data and computation resources to train working model.
+                The first approach that we tested was an End-to-End. There are several E2E working solutions currently on
+                the market. Their pros is that they are fairly easy to design. On the other hand, they need a huge
+                amount of data and computation resources to train a working model.
             </p>
             <p>
-                With 52 hours of clean speech to work with and laptop, we didn't expect to achieve good performance.
-                Only 32
-                hours of speech was used for training. The rest of data was used for test and validation.
+                The first approach that we tested was an End-to-End. There are several E2E working solutions currently on
+                the market. Their pros is that they are fairly easy to design. On the other hand, they need a huge
+                amount of data and computation resources to train a working model.
             </p>
 
             <div fxLayoutAlign="center">
@@ -42,30 +41,35 @@
                      fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="center start" fxLayoutGap.gt-xs="50px"
                      fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="50px">
                     <div fxLayoutAlign="center">
-                        <img (click)="showImg(modelImg.src)" #modelImg  class="e2e-model-img" src="assets/images/model.jpg">
+                        <img (click)="showImg(modelImg.src)" #modelImg class="e2e-model-img"
+                             src="assets/images/model.jpg">
                     </div>
                     <div class="e2e-description-img-container">
                         <p class="e2e-description">
-                            On the left side
-                            you can see image with model architecture that was trained.
-                            As speech features we used MFCC. To match speech input frames into output labels we used CTC
-                            technique.
+                            On the left side you can see an image with model architecture that
+                            was trained.
+                            We used MFCC as speech features. We used CTC technique to match speech input frames into
+                            output labels.
                         </p>
                         <p>
-                            Even though keras method 'fit_generator' was used to minimize memory consumption needed for
-                            training
-                            process, it was crushing because of 'out of memory' error. Training had to be divided into
-                            several turns of
-                            5 epochs each.
+                            Even though keras method 'fit_generator' was used to minimise memory consumption needed for
+                            training process, it was still crushing because of 'out of memory' error. Training had to be
+                            divided into several turns of 5 epochs each.
                         </p>
                         <p>
-                            As we knew that this solution will not be the best we finished this experiment at this
-                            stage.
+                            As we knew that this solution would not produce the best results, we finished this
+                            experiment at this stage.
                         </p>
                         <div class="e2e-try-it-container" fxLayout="column" fxLayoutAlign="center center">
-                            <p>You can give it a try here</p>
-                            <h3>WER = 106%</h3>
-                            <button class="e2e-try-it-button" mat-raised-button routerLink="/asr">Try it!</button>
+                            <p>
+                                You can give it a try here
+                            </p>
+                            <h3>
+                                WER = 106%
+                            </h3>
+                            <button class="e2e-try-it-button" mat-raised-button routerLink="/asr">
+                                Try it!
+                            </button>
                         </div>
                     </div>
                 </div>
